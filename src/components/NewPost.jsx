@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import classes from './NewPost.module.css';
 
-function NewPost({onStopPosting, onAddPost}) {
+function NewPost({onCancel, onAddPost}) {
   const [enteredBody, setEnteredBody] = useState('');
   const [enteredAuthor, setEnteredAuthor] = useState('');
   function bodyChangeHandler(event) {
@@ -11,11 +11,11 @@ function NewPost({onStopPosting, onAddPost}) {
   function authorChangeHandler(event) {
     setEnteredAuthor(event.target.value);
   }
-  function onCancel() {
-    setEnteredBody('');
-    setEnteredAuthor('');
+  // function onCancel() {
+  //   setEnteredBody('');
+  //   setEnteredAuthor('');
     // onStopPosting();
-  }
+  // }
   function submitHandler(event) {
     event.preventDefault();
     const postData = {

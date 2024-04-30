@@ -1,6 +1,7 @@
-
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import classes from './NewPost.module.css';
+import Modal from '../components/Modal';
 
 function NewPost({onCancel, onAddPost}) {
   const [enteredBody, setEnteredBody] = useState('');
@@ -11,11 +12,6 @@ function NewPost({onCancel, onAddPost}) {
   function authorChangeHandler(event) {
     setEnteredAuthor(event.target.value);
   }
-  // function onCancel() {
-  //   setEnteredBody('');
-  //   setEnteredAuthor('');
-    // onStopPosting();
-  // }
   function submitHandler(event) {
     event.preventDefault();
     const postData = {
@@ -27,20 +23,22 @@ function NewPost({onCancel, onAddPost}) {
     onCancel();
   }
   return (
-    <form className={classes.form} onSubmit={submitHandler}>
-      <p>
-        <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={bodyChangeHandler}/>
-      </p>
-      <p>
-        <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required  onChange={authorChangeHandler}/>
-      </p>
-      <p className={classes.actions}>
-      <button type="button" onClick={onCancel}>Cancel</button>
-      <button type="submit">Submit</button>
-      </p>
-    </form>
+    <Modal>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <p>
+          <label htmlFor="body">Text</label>
+          <textarea id="body" required rows={3} onChange={bodyChangeHandler}/>
+        </p>
+        <p>
+          <label htmlFor="name">Your name</label>
+          <input type="text" id="name" required  onChange={authorChangeHandler}/>
+        </p>
+        <p className={classes.actions}>
+        <Link type="button" to="..">Cancel</Link>
+        <button type="submit">Submit</button>
+        </p>
+      </form>
+    </Modal>
   );
 }
 
